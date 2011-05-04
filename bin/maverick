@@ -7,7 +7,7 @@ var sys = require("sys"),
     nodeChildProcess = require("child_process");
 
 var currentDir = nodePath.resolve("./"),
-    moduleDir = nodePath.resolve(__directory, "../");
+    moduleDir = nodePath.resolve(__dirname, "../");
 
 function dirExistsSync(dir) { 
   try {
@@ -37,21 +37,29 @@ this.create = function(projectName) {
   }
 
   var projectDir = nodePath.join(currentDir, projectName),
-      srcProjectDir = ;
+      srcProjectDir = nodePath.join(moduleDir, "lib/skeleton");
 
   if(nodePath.existsSync(projectDir)) {
     sys.puts("A folder already exists with this project name, please choose another or remove the existing folder.".yellow.bold);
     return false;
   }
 
-  nodeChildProcess.exec("cp -R " +  + " " + projectDir)
+  nodeChildProcess.exec("cp -R " + srcProjectDir + " " + projectDir, function(err, stdout, stderr) {
+    sys.puts("Your Maverick app has been created. Move to the application directory and run `maverick help` for more instructions.".green.bold);
+  });
 }
 
 /**
  *
  */
 this.start = function() {
+  var applicationPath = nodePath.join(currentDir, "config/application.js");
 
+  console.log(applicationPath);
+
+  if(nodePath.existsSync(applicationPath)) {
+    require(applicationPath);
+  }
 }
 
 /* */

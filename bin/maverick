@@ -1,0 +1,71 @@
+#!/usr/bin/env node
+
+var sys = require("sys"),
+    colors = require("colors"),
+    nodePath = require("path"),
+    nodeFs = require("fs"),
+    nodeChildProcess = require("child_process");
+
+var currentDir = nodePath.resolve("./"),
+    moduleDir = nodePath.resolve(__directory, "../");
+
+function dirExistsSync(dir) { 
+  try {
+    nodeFs.statSync(dir);
+    return true;
+  } catch(e) {
+    return false;
+  }
+}
+
+/* */
+
+/**
+ *
+ */
+this.help = function() {
+  
+}
+
+/**
+ *
+ */
+this.create = function(projectName) {
+  if(!projectName) {
+    sys.puts("You must provide a project name to create a new Maverick project.".red.bold);
+    return false;
+  }
+
+  var projectDir = nodePath.join(currentDir, projectName),
+      srcProjectDir = ;
+
+  if(nodePath.existsSync(projectDir)) {
+    sys.puts("A folder already exists with this project name, please choose another or remove the existing folder.".yellow.bold);
+    return false;
+  }
+
+  nodeChildProcess.exec("cp -R " +  + " " + projectDir)
+}
+
+/**
+ *
+ */
+this.start = function() {
+
+}
+
+/* */
+
+var args = process.argv.slice(2);
+
+if(!args.length) {
+  this.help();
+} else {
+  var fn = this[args[0]],
+      fnArgs = args.slice(1);
+  if(fn && typeof fn === "function") {
+    fn.apply(this, fnArgs);
+  } else {
+    sys.puts("The command you are trying to run does not exist. Please run `maverick help` for more info.".red.bold);
+  }
+}

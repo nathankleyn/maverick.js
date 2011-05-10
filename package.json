@@ -1,13 +1,14 @@
 {
   "name" : "maverick",
   "description" : "A Node.js based RESTful web framework, with a focus on clean structure and MVC oriented design patterns.",
-  "version" : "0.0.1",
+  "version" : "0.0.2",
   "author" : "Nathan Kleyn <nathan@unfinitydesign.com> (http://unfinitydesign.com/)",
   "dependencies" : {
     "connect" : ">= 1.4",
     "colors" : ">= 0.5",
     "underscore" : ">= 1.1.6",
-    "mustache" : ">= 0.3.1-dev"
+    "mustache" : ">= 0.3.1-dev",
+    "cucumis-rm" : ">= 1.0.17"
   },
   "keywords" : ["web", "framework", "mvc", "rest", "restful", "sinatra", "rails", "ruby on rails"],
   "repository" : "git://github.com/nathankleyn/maverick.js",

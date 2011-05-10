@@ -1,1 +1,1 @@
-module.exports = require('./lib/maverick');
+module.exports = require('./lib/init');

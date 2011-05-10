@@ -44,7 +44,7 @@ this.create = function(projectName) {
     return false;
   }
 
-  nodeChildProcess.exec("cp -R " + srcProjectDir + " " + projectDir, function(err, stdout, stderr) {
+  nodeChildProcess.exec("cp -R " + srcProjectDir + " " + projectDir + "; cd " + projectDir + "; npm install maverick", function(e, stdout, stderr) {
     sys.puts("Your Maverick app has been created. Move to the application directory and run `maverick help` for more instructions.".green.bold);
   });
 }
@@ -55,10 +55,29 @@ this.create = function(projectName) {
 this.start = function() {
   var applicationPath = nodePath.join(currentDir, "config/application.js");
 
-  console.log(applicationPath);
-
   if(nodePath.existsSync(applicationPath)) {
     require(applicationPath);
+  } else {
+    sys.puts("Can't find an application.js to use to start a server, make sure you have one at `config/application.js`.".red.bold);
+  }
+}
+
+/**
+ *
+ */
+this.run_tests = function() {
+  var cucumisPath = nodePath.join(currentDir, "node_modules/cucumis-rm/bin/cucumis");
+
+  if(nodePath.existsSync(cucumisPath)) {
+    nodeChildProcess.exec(cucumisPath, function(e, stdout, stderr) {
+      if(!e) {
+        sys.puts(stdout);
+      } else {
+        sys.puts(stderr.red.bold);
+      }
+    });
+  } else {
+    sys.puts("Can't find cucumis to run the tests, have you run `node install`?".red.bold);
   }
 }
 

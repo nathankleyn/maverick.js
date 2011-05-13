@@ -1,7 +1,7 @@
 {
   "name" : "maverick",
   "description" : "A Node.js based RESTful web framework, with a focus on clean structure and MVC oriented design patterns.",
-  "version" : "0.0.2",
+  "version" : "0.0.3",
   "author" : "Nathan Kleyn <nathan@unfinitydesign.com> (http://unfinitydesign.com/)",
   "dependencies" : {
     "connect" : ">= 1.4",
